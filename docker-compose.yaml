@@ -1,0 +1,25 @@
+version: "3"
+networks:
+  my-network-name:
+services:
+  nginx:
+    image: nginx
+    volumes: 
+      - ./nginx/www:/var/www/html
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - "9000:80"
+    networks:
+      - my-network-name
+  weba:
+    image: mendhak/http-https-echo
+    ports:
+      - "9001:80"
+    networks:
+      - my-network-name
+  webb:
+    image: mendhak/http-https-echo
+    ports:
+      - "9002:80"
+    networks:
+      - my-network-name
